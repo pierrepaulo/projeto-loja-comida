@@ -2,12 +2,15 @@
 import { Product } from "@/types/product";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
+import { useCartStore } from "@/stores/cart-store";
 type Props = {
   item: Product;
 };
 
 export const ProductItem = ({ item }: Props) => {
+  const { upsertCartItem } = useCartStore((state) => state);
   const handleAddButton = () => {
+    upsertCartItem(item, 1);
     toast.success(`1× ${item.name} adicionado ao carrinho`, {
       description: `Preço: R$ ${item.price.toFixed(2)}`,
       duration: 3000,
