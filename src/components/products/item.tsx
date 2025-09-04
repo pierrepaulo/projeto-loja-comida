@@ -1,12 +1,19 @@
 "use client";
 import { Product } from "@/types/product";
 import { Button } from "../ui/button";
+import { toast } from "sonner";
 type Props = {
   item: Product;
 };
 
 export const ProductItem = ({ item }: Props) => {
-  const handleAddButton = () => {};
+  const handleAddButton = () => {
+    toast.success(`1× ${item.name} adicionado ao carrinho`, {
+      description: `Preço: R$ ${item.price.toFixed(2)}`,
+      duration: 3000,
+      closeButton: true,
+    });
+  };
   return (
     <div>
       <div className="rounded-mb overflow-hidden">
