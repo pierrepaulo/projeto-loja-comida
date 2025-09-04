@@ -1,18 +1,53 @@
+import { getAllProducts } from "@/services/product";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { title } from "process";
+import { Product } from "@/types/product";
 
-export const ProductsTab = () => {
+type Tab = {
+  title: string;
+  value: string;
+  products: Product[];
+};
+
+export const ProductsTab = async () => {
+  const products = await getAllProducts();
+
+  const tabs: Tab[] = [
+    {
+      title: "Sushi",
+      value: "sushi",
+      products: [],
+    },
+    {
+      title: "Temaki",
+      value: "temaki",
+      products: [],
+    },
+    {
+      title: "Combinados",
+      value: "pack",
+      products: [],
+    },
+    {
+      title: "Bebidas",
+      value: "beverage",
+      products: [],
+    },
+  ];
   return (
-    <Tabs defaultValue="tab1">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="tab1">Tab1</TabsTrigger>
-        <TabsTrigger value="tab2">Tab2</TabsTrigger>
+    <Tabs defaultValue="sushi">
+      <TabsList className="flex">
+        {tabs.map((item) => (
+          <TabsTrigger key={item.value} value={item.value} className="flex-1">
+            {item.title}{" "}
+          </TabsTrigger>
+        ))}
       </TabsList>
-      <TabsContent value="tab1" className="mt-6">
-        Conteudo da TAB 1
-      </TabsContent>
-      <TabsContent value="tab2" className="mt-6">
-        Conteudo da TAB 2
-      </TabsContent>
+      {tabs.map((item) => (
+        <TabsContent value={item.value} className="mt-6">
+          ...
+        </TabsContent>
+      ))}
     </Tabs>
   );
 };
