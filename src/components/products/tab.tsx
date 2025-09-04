@@ -7,8 +7,12 @@ export const ProductsTab = () => {
         <TabsTrigger value="tab1">Tab1</TabsTrigger>
         <TabsTrigger value="tab2">Tab2</TabsTrigger>
       </TabsList>
-      <TabsContent value="tab1">Conteudo da TAB 1</TabsContent>
-      <TabsContent value="tab2">Conteudo da TAB 2</TabsContent>
+      <TabsContent value="tab1" className="mt-6">
+        Conteudo da TAB 1
+      </TabsContent>
+      <TabsContent value="tab2" className="mt-6">
+        Conteudo da TAB 2
+      </TabsContent>
     </Tabs>
   );
 };
