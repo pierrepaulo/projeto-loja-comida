@@ -1,19 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
-import { Progress } from "../ui/progress";
-import { StepUser } from "./setp-user";
-import { StepAddress } from "./step-address";
-import { StepFinish } from "./setp-finish";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Progress } from "@/components/ui/progress";
+import { StepUser } from "@/components/checkout/setp-user";
+import { StepAddress } from "@/components/checkout/step-address";
+import { StepFinish } from "@/components/checkout/setp-finish";
+import { CheckoutSteps } from "@/types/chekout-steps";
 
-type Steps = "user" | "address" | "finish";
 type Props = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 };
 export const CheckoutDialog = ({ open, onOpenChange }: Props) => {
-  const [step, setStep] = useState("user");
+  const [step, setStep] = useState<CheckoutSteps>("user");
   let progressPct = 0;
   switch (step) {
     case "user":
